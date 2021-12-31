@@ -24,5 +24,7 @@ public class DeliveryApiApplication {
 	public void init() {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		seeder.seedStatesAndCities();
+		seeder.seedProfiles();
+		seeder.seedUser();
 	}
 }

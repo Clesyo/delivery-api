@@ -18,15 +18,23 @@ import com.google.gson.JsonParser;
 
 import br.com.delivery.model.City;
 import br.com.delivery.model.State;
+import br.com.delivery.model.User;
 import br.com.delivery.model.repository.CityRepository;
+import br.com.delivery.model.repository.RoleRepository;
 import br.com.delivery.model.repository.StateRepository;
+import br.com.delivery.model.repository.UserRepository;
+import br.com.delivery.utils.Utils;
+
+import static br.com.delivery.enums.UserType.*;
 
 @Service
 public class DefaultSeeder {
 
-	// @Autowired //private RoleRepository roleRopositoty;
+	@Autowired
+	private RoleRepository roleRopositoty;
 
-	// @Autowired //private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private StateRepository stateRepository;
@@ -38,22 +46,27 @@ public class DefaultSeeder {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultSeeder.class);
 
-	/*
-	 * public void seedUser() {
-	 * 
-	 * if (userRepository.findAll().size() == 0) {
-	 * LOGGER.info(">>> Creating default user"); User user = new User();
-	 * user.setEmail("admin@gmail.com"); user.setName("Admin User");
-	 * user.setPassword(new BCryptPasswordEncoder().encode("12345678"));
-	 * roleRopositoty.findByName(ADMIN.name()).ifPresent(role ->
-	 * user.setRole(role)); userRepository.save(user);
-	 * LOGGER.info("Default user created <<<"); } }
-	 * 
-	 * public void seedProfiles() { if (roleRopositoty.count() == 0) {
-	 * LOGGER.info(">>> Creating default roles"); Utils.convertUserTypeRoles(ADMIN,
-	 * STUDENT, TEACHER).forEach(type -> roleRopositoty.save(type));
-	 * LOGGER.info("Default roles created <<<"); } }
-	 */
+	public void seedUser() {
+
+		if (userRepository.findAll().size() == 0) {
+			LOGGER.info(">>> Creating default user");
+			User user = new User();
+			user.setEmail("admin@gmail.com");
+			user.setName("Admin User");
+			user.setPassword("123456");
+			roleRopositoty.findByName(ADMIN.name()).ifPresent(role -> user.setRole(role));
+			userRepository.save(user);
+			LOGGER.info("Default user created <<<");
+		}
+	}
+
+	public void seedProfiles() {
+		if (roleRopositoty.count() == 0) {
+			LOGGER.info(">>> Creating default roles");
+			Utils.convertUserTypeRoles(ADMIN, CLIENT).forEach(type -> roleRopositoty.save(type));
+			LOGGER.info("Default roles created <<<");
+		}
+	}
 
 	public void seedStatesAndCities() {
 
