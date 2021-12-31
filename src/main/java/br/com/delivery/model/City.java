@@ -1,11 +1,17 @@
 package br.com.delivery.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
+@Entity
 public class City {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String name;
@@ -15,6 +21,9 @@ public class City {
 	@ManyToOne
 	@JoinColumn(name = "state_id")
 	private State state;
+
+	public City() {
+	}
 
 	public City(String name, Integer ibgeCode, State state) {
 		this.name = name;
@@ -53,7 +62,5 @@ public class City {
 	public void setState(State state) {
 		this.state = state;
 	}
-	
-	
-	
+
 }

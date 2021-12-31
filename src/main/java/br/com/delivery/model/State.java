@@ -24,6 +24,9 @@ public class State {
 	@OneToMany(mappedBy = "state")
 	private List<City> cities;
 
+	public State() {
+	}
+
 	public State(String name, String uf, Integer code) {
 		super();
 		this.name = name;
