@@ -1,4 +1,4 @@
-package br.com.delivery.model;
+package br.com.delivery.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

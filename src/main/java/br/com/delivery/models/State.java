@@ -1,4 +1,4 @@
-package br.com.delivery.model;
+package br.com.delivery.models;
 
 import java.util.List;
 

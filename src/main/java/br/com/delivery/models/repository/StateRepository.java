@@ -1,8 +1,8 @@
-package br.com.delivery.model.repository;
+package br.com.delivery.models.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.delivery.model.State;
+import br.com.delivery.models.State;
 
 public interface StateRepository extends JpaRepository<State, Long>{
 

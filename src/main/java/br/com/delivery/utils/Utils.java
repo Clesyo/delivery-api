@@ -13,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import br.com.delivery.enums.UserType;
-import br.com.delivery.model.Role;
+import br.com.delivery.models.Role;
 
 @Component
 public abstract class Utils {

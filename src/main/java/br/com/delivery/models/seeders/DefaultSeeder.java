@@ -1,4 +1,4 @@
-package br.com.delivery.model.seeders;
+package br.com.delivery.models.seeders;
 
 import java.io.File;
 import java.io.FileReader;
@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-import br.com.delivery.model.City;
-import br.com.delivery.model.State;
-import br.com.delivery.model.User;
-import br.com.delivery.model.repository.CityRepository;
-import br.com.delivery.model.repository.RoleRepository;
-import br.com.delivery.model.repository.StateRepository;
-import br.com.delivery.model.repository.UserRepository;
+import br.com.delivery.models.City;
+import br.com.delivery.models.State;
+import br.com.delivery.models.User;
+import br.com.delivery.models.repository.CityRepository;
+import br.com.delivery.models.repository.RoleRepository;
+import br.com.delivery.models.repository.StateRepository;
+import br.com.delivery.models.repository.UserRepository;
 import br.com.delivery.utils.Utils;
 
 import static br.com.delivery.enums.UserType.*;

@@ -1,10 +1,10 @@
-package br.com.delivery.model.repository;
+package br.com.delivery.models.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.delivery.model.Role;
+import br.com.delivery.models.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
