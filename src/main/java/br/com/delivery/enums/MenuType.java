@@ -1,0 +1,6 @@
+package br.com.delivery.enums;
+
+public enum MenuType {
+
+	PRATO_PRINCIPAL, GUARNICAO, ACOMPANHAMENTO, SOBREMESA, BEBIDAS, SALADAS, ENTRADAS, EXTRA;
+}
