@@ -12,22 +12,16 @@ import javax.persistence.OneToMany;
 import br.com.delivery.enums.OrderStatus;
 
 @Entity
-public class Order extends BaseEntity{
+public class Order extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
-	
+
 	@Column(columnDefinition = "default 0.00")
 	private BigDecimal total;
-	
-	@Column(columnDefinition = "default 0.00")
-	private BigDecimal troco;
-	
-	@Column(columnDefinition = "default 0.00")
-	private BigDecimal discount;
-	
+
 	@OneToMany(mappedBy = "order")
 	private List<OrderItem> items;
 
@@ -47,19 +41,4 @@ public class Order extends BaseEntity{
 		this.total = total;
 	}
 
-	public BigDecimal getTroco() {
-		return troco;
-	}
-
-	public void setTroco(BigDecimal troco) {
-		this.troco = troco;
-	}
-
-	public BigDecimal getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(BigDecimal discount) {
-		this.discount = discount;
-	}
 }
