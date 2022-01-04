@@ -8,18 +8,20 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import br.com.delivery.enums.OrderStatus;
 
 @Entity
+@Table(name = "orders")
 public class Order extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
-
-	@Column(columnDefinition = "default 0.00")
+	
+	@Column(columnDefinition = "decimal(19,2) default '0.00'")
 	private BigDecimal total;
 
 	@OneToMany(mappedBy = "order")

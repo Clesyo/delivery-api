@@ -28,13 +28,13 @@ public class Payment {
 	@Enumerated(EnumType.STRING)
 	private PaymentMethod paymento;
 	
-	@Column(columnDefinition = "default 0.00")
+	@Column(columnDefinition = "decimal(19,2) default '0.00'")
 	private BigDecimal troco;
 	
-	@Column(columnDefinition = "default 0.00")
+	@Column(columnDefinition = "decimal(19,2) default '0.00'")
 	private BigDecimal discount;
 
-	@Column(columnDefinition = "default 0.00")
+	@Column(columnDefinition = "decimal(19,2) default '0.00'")
 	private BigDecimal total;
 
 	public Long getId() {

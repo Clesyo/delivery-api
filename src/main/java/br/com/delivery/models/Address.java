@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Address {
@@ -15,22 +16,28 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String zipeCode;
-	
+
+	private String zipCode;
+
 	private String street;
-	
+
 	private Integer number;
-	
+
 	private String complement;
-	
+
 	private String district;
-	
-	private String uf;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "client_id")
 	private Client client;
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "city_id")
+	private City city;
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "state_id")
+	private State state;
 
 	public Long getId() {
 		return id;
@@ -40,12 +47,12 @@ public class Address {
 		this.id = id;
 	}
 
-	public String getZipeCode() {
-		return zipeCode;
+	public String getZipCode() {
+		return zipCode;
 	}
 
-	public void setZipeCode(String zipeCode) {
-		this.zipeCode = zipeCode;
+	public void setZipCode(String zipeCode) {
+		this.zipCode = zipeCode;
 	}
 
 	public String getStreet() {
@@ -80,14 +87,6 @@ public class Address {
 		this.district = district;
 	}
 
-	public String getUf() {
-		return uf;
-	}
-
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
 	public Client getClient() {
 		return client;
 	}
@@ -95,6 +94,21 @@ public class Address {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	
-	
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
 }
