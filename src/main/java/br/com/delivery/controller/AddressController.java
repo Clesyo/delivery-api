@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.delivery.dtos.AddressDto;
 import br.com.delivery.forms.AddressForm;
-import br.com.delivery.services.IAddressService;
+import br.com.delivery.interfaces.IAddressService;
 
 @RestController
 @RequestMapping(path = "/address")
