@@ -69,4 +69,13 @@ public class Product extends BaseEntity{
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+
+	public ProductType getType() {
+		return type;
+	}
+
+	public void setType(ProductType type) {
+		this.type = type;
+	}
+	
 }
