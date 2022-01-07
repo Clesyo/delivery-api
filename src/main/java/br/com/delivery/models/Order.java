@@ -3,10 +3,13 @@ package br.com.delivery.models;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,8 +27,12 @@ public class Order extends BaseEntity {
 	@Column(columnDefinition = "decimal(19,2) default '0.00'")
 	private BigDecimal total;
 
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderItem> items;
+	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;
 
 	public OrderStatus getStatus() {
 		return status;
@@ -43,4 +50,19 @@ public class Order extends BaseEntity {
 		this.total = total;
 	}
 
+	public List<OrderItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
 }

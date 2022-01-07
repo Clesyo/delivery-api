@@ -2,7 +2,7 @@ package br.com.delivery.enums;
 
 public enum OrderStatus {
 
-	PENDING("Pendente"), WAITING("Aguardando"), PREPARING("Preparando"), CALLED_OFF("Cancelado"), PAID_OUT("Pago");
+	CREATED("CRIADO"), PENDING("PENDENTE"), WAITING("AGUARDANDO"), PREPARING("PREPARANDO"), CALLED_OFF("CANCELADO"), PAID_OUT("PAGO");
 
 	private String description;
 
