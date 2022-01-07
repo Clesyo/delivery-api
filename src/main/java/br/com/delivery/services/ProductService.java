@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import br.com.delivery.dtos.ProductDto;
 import br.com.delivery.forms.ProductForm;
 import br.com.delivery.interfaces.IProductService;
-import br.com.delivery.models.repository.CategoryRepository;
-import br.com.delivery.models.repository.ProductRepository;
+import br.com.delivery.repository.CategoryRepository;
+import br.com.delivery.repository.ProductRepository;
 
 @Service
 public class ProductService implements IProductService {

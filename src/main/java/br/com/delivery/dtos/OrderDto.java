@@ -8,9 +8,9 @@ import br.com.delivery.models.Order;
 public class OrderDto {
 
 	private Long id;
+	private String client;
 	private String status;
 	private BigDecimal total;
-	private String client;
 	private List<OrderItemDto> items;
 
 	public OrderDto(Order order) {

@@ -7,7 +7,7 @@ import br.com.delivery.dtos.CategoryDto;
 import br.com.delivery.exception.InvalidException;
 import br.com.delivery.forms.CategoryForm;
 import br.com.delivery.interfaces.ICategoryService;
-import br.com.delivery.models.repository.CategoryRepository;
+import br.com.delivery.repository.CategoryRepository;
 
 @Service
 public class CategoryService implements ICategoryService {

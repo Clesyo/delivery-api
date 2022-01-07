@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import br.com.delivery.dtos.AddressDto;
 import br.com.delivery.forms.AddressForm;
 import br.com.delivery.interfaces.IAddressService;
-import br.com.delivery.models.repository.AddressRepository;
+import br.com.delivery.repository.AddressRepository;
 import br.com.delivery.validator.AddressValidator;
 
 @Service

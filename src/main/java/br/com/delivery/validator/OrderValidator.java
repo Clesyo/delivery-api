@@ -9,8 +9,8 @@ import br.com.delivery.forms.OrderForm;
 import br.com.delivery.forms.OrderItemForm;
 import br.com.delivery.models.Order;
 import br.com.delivery.models.OrderItem;
-import br.com.delivery.models.repository.ClientRepository;
-import br.com.delivery.models.repository.ProductRepository;
+import br.com.delivery.repository.ClientRepository;
+import br.com.delivery.repository.ProductRepository;
 
 @Service
 public class OrderValidator {

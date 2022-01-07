@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.delivery.forms.AddressForm;
 import br.com.delivery.models.Address;
-import br.com.delivery.models.repository.CityRepository;
-import br.com.delivery.models.repository.ClientRepository;
+import br.com.delivery.repository.CityRepository;
+import br.com.delivery.repository.ClientRepository;
 
 @Service
 public class AddressValidator {

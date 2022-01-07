@@ -18,7 +18,7 @@ import br.com.delivery.enums.OrderOperation;
 import br.com.delivery.enums.OrderStatus;
 
 @Entity
-public class OrderLog {
+public class LogOrder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class OrderLog {
 	private Order order;
 	
 	@Enumerated(EnumType.STRING)
-	private OrderStatus statusOrder;
+	private OrderStatus status;
 	
 	@Enumerated(EnumType.STRING)
 	private OrderOperation operation;
@@ -41,4 +41,45 @@ public class OrderLog {
 	protected void prePersiste() {
 		this.createAt = new Date();
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus statusOrder) {
+		this.status = statusOrder;
+	}
+
+	public OrderOperation getOperation() {
+		return operation;
+	}
+
+	public void setOperation(OrderOperation operation) {
+		this.operation = operation;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+	
 }

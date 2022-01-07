@@ -1,4 +1,4 @@
-package br.com.delivery.models.repository;
+package br.com.delivery.repository;
 
 import java.util.Optional;
 

@@ -14,11 +14,11 @@ import br.com.delivery.enums.UserType;
 import br.com.delivery.forms.ClientForm;
 import br.com.delivery.interfaces.IClientService;
 import br.com.delivery.models.Client;
-import br.com.delivery.models.repository.AddressRepository;
-import br.com.delivery.models.repository.CityRepository;
-import br.com.delivery.models.repository.ClientRepository;
-import br.com.delivery.models.repository.RoleRepository;
-import br.com.delivery.models.repository.UserRepository;
+import br.com.delivery.repository.AddressRepository;
+import br.com.delivery.repository.CityRepository;
+import br.com.delivery.repository.ClientRepository;
+import br.com.delivery.repository.RoleRepository;
+import br.com.delivery.repository.UserRepository;
 import br.com.delivery.validator.ClientValidator;
 
 @Service

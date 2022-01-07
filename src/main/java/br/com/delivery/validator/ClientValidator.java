@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.delivery.forms.ClientForm;
-import br.com.delivery.models.repository.ClientRepository;
-import br.com.delivery.models.repository.UserRepository;
+import br.com.delivery.repository.ClientRepository;
+import br.com.delivery.repository.UserRepository;
 
 @Service
 public class ClientValidator {

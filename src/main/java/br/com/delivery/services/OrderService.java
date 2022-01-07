@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.delivery.dtos.OrderDto;
+import br.com.delivery.enums.OrderOperation;
 import br.com.delivery.enums.OrderStatus;
 import br.com.delivery.forms.OrderForm;
+import br.com.delivery.interfaces.ILogOrderService;
 import br.com.delivery.interfaces.IOrderService;
 import br.com.delivery.models.Order;
 import br.com.delivery.models.OrderItem;
-import br.com.delivery.models.repository.OrderRepository;
+import br.com.delivery.repository.OrderRepository;
 import br.com.delivery.validator.OrderValidator;
 
 @Service
@@ -25,6 +27,9 @@ public class OrderService implements IOrderService {
 	private OrderRepository orderRepository;
 
 	private Double total = 0.00;
+	
+	@Autowired
+	private ILogOrderService logService;
 
 	@Override
 	public OrderDto save(OrderForm form) {
@@ -35,6 +40,7 @@ public class OrderService implements IOrderService {
 		order.setTotal(new BigDecimal(total));
 		order.setStatus(OrderStatus.CREATED);
 		order = orderRepository.save(order);
+		logService.create(order, OrderOperation.INSERT, OrderStatus.CREATED);
 		return OrderDto.convert(order);
 	}
 
