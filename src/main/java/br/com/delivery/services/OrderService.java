@@ -84,4 +84,13 @@ public class OrderService implements IOrderService {
 		return OrderDto.convert(page);
 	}
 
+	@Override
+	public OrderDto findClient(Long id) {
+		// TODO Auto-generated method stub
+		var client = clientRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado para ID informado."));
+		orderRepository.findByClient(client);
+		return null;
+	}
+
 }
