@@ -3,6 +3,9 @@ package br.com.delivery.services;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +30,7 @@ public class OrderService implements IOrderService {
 	private OrderRepository orderRepository;
 
 	private Double total = 0.00;
-	
+
 	@Autowired
 	private ILogOrderService logService;
 
@@ -52,6 +55,19 @@ public class OrderService implements IOrderService {
 			total += (price * itemForm.getAmount());
 			return item;
 		}).toList();
+	}
+
+	@Transactional
+	@Override
+	public OrderDto changeStatusOrder(Long id, OrderStatus status) {
+		// TODO Auto-generated method stub
+		var orderNew = orderRepository.findById(id).map(order -> {
+			order.setStatus(status);
+			orderRepository.save(order);
+			logService.create(order, OrderOperation.UPDATE, status);
+			return order;
+		}).orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado para ID informado."));
+		return OrderDto.convert(orderNew);
 	}
 
 }
