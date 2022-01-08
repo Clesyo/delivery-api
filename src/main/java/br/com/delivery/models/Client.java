@@ -31,6 +31,9 @@ public class Client extends BaseEntity {
 
 	@OneToMany(mappedBy = "client")
 	private List<Address> addresses;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders;
 
 	public String getName() {
 		return name;
@@ -78,5 +81,13 @@ public class Client extends BaseEntity {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 }

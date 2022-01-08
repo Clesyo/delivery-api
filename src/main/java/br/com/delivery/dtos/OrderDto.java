@@ -3,6 +3,8 @@ package br.com.delivery.dtos;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import br.com.delivery.models.Order;
 
 public class OrderDto {
@@ -24,6 +26,10 @@ public class OrderDto {
 	public static OrderDto convert(Order order) {
 		// TODO Auto-generated method stub
 		return new OrderDto(order);
+	}
+	public static Page<OrderDto> convert(Page<Order> orders) {
+		// TODO Auto-generated method stub
+		return orders.map(OrderDto::convert);
 	}
 
 	public Long getId() {

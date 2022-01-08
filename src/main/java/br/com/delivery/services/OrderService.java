@@ -7,6 +7,9 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.delivery.dtos.OrderDto;
@@ -17,6 +20,7 @@ import br.com.delivery.interfaces.ILogOrderService;
 import br.com.delivery.interfaces.IOrderService;
 import br.com.delivery.models.Order;
 import br.com.delivery.models.OrderItem;
+import br.com.delivery.repository.ClientRepository;
 import br.com.delivery.repository.OrderRepository;
 import br.com.delivery.validator.OrderValidator;
 
@@ -34,9 +38,11 @@ public class OrderService implements IOrderService {
 	@Autowired
 	private ILogOrderService logService;
 
+	@Autowired
+	private ClientRepository clientRepository;
+
 	@Override
 	public OrderDto save(OrderForm form) {
-		// TODO Auto-generated method stub
 		var order = form.toOrder();
 		orderValidator.validate(form, order);
 		order.setItems(buildListItem(form, order));
@@ -60,7 +66,6 @@ public class OrderService implements IOrderService {
 	@Transactional
 	@Override
 	public OrderDto changeStatusOrder(Long id, OrderStatus status) {
-		// TODO Auto-generated method stub
 		var orderNew = orderRepository.findById(id).map(order -> {
 			order.setStatus(status);
 			orderRepository.save(order);
@@ -68,6 +73,15 @@ public class OrderService implements IOrderService {
 			return order;
 		}).orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado para ID informado."));
 		return OrderDto.convert(orderNew);
+	}
+
+	@Override
+	public Page<OrderDto> searchAllOrderClient(Long id, Pageable pagination) {
+		var client = clientRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado para ID informado."));
+		List<Order> orders = client.getOrders();
+		Page<Order> page = new PageImpl<>(orders, pagination, orders.size());
+		return OrderDto.convert(page);
 	}
 
 }
