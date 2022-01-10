@@ -16,6 +16,9 @@ public class DeliveryApiApplication {
 	@Autowired
 	private DefaultSeeder seeder;
 	
+	@Autowired
+	private DeliveryApiContext context;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(DeliveryApiApplication.class, args);
 	}
@@ -23,6 +26,7 @@ public class DeliveryApiApplication {
 	@PostConstruct
 	public void init() {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+		context.load();
 		seeder.seedStatesAndCities();
 		seeder.seedProfiles();
 		seeder.seedUser();

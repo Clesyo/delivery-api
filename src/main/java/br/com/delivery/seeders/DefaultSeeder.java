@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonArray;
@@ -53,7 +54,7 @@ public class DefaultSeeder {
 			User user = new User();
 			user.setEmail("admin@gmail.com");
 			user.setName("Admin User");
-			user.setPassword("123456");
+			user.setPassword(new BCryptPasswordEncoder().encode( "123456"));
 			roleRopositoty.findByName(ADMIN.name()).ifPresent(role -> user.setRole(role));
 			userRepository.save(user);
 			LOGGER.info("Default user created <<<");

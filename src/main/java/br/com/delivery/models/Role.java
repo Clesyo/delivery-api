@@ -1,12 +1,18 @@
 package br.com.delivery.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
-public class Role {
+public class Role implements Serializable, GrantedAuthority{
+
+	private static final long serialVersionUID = -7136808583183751798L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +41,12 @@ public class Role {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
+		return name.toString();
 	}
 
 }

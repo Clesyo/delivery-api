@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.delivery.models.Address;
 import br.com.delivery.models.Client;
@@ -65,7 +66,7 @@ public class ClientForm {
 		var user = new User();
 		user.setEmail(getEmail());
 		user.setName(name);
-		user.setPassword(password);
+		user.setPassword(new BCryptPasswordEncoder().encode(password));
 		return user;
 	}
 	

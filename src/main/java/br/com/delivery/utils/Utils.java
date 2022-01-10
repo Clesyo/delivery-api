@@ -9,31 +9,35 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import br.com.delivery.DeliveryApiContext;
 import br.com.delivery.enums.UserType;
 import br.com.delivery.models.Role;
 
 @Component
 public abstract class Utils {
 
-	//private static SchoolCalendarApiContext context;
+	private static DeliveryApiContext context;
 
 	public static List<Role> convertUserTypeRoles(UserType... types) {
 		return Arrays.stream(types).map(type -> new Role(type.name())).collect(Collectors.toList());
 	}
 
-	/*
-	 * public static String generateRandomString(Integer length) { return
-	 * RandomStringUtils.random(length,
-	 * "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"); }
-	 * 
-	 * public SchoolCalendarApiContext getContext() { return context; }
-	 * 
-	 * public static void setContext(SchoolCalendarApiContext context) {
-	 * Utils.context = context; }
-	 */
+	public static String generateRandomString(Integer length) {
+		return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+	}
+
+	public DeliveryApiContext getContext() {
+		return context;
+	}
+
+	public static void setContext(DeliveryApiContext context) {
+		Utils.context = context;
+	}
+
 	public static String validPhone(String phone) {
 		return phone.replaceAll("[\\s()-]", "");
 	}
