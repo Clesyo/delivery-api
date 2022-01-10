@@ -9,5 +9,5 @@ import br.com.delivery.models.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Long>{
 
-	Optional<Order> findByClient(Client client);
+	Optional<Order> findByIdAndClient(Long id, Client client);
 }

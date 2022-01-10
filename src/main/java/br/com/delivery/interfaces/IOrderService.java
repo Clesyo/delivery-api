@@ -12,9 +12,7 @@ public interface IOrderService {
 	OrderDto save(OrderForm form);
 
 	OrderDto changeStatusOrder(Long id, OrderStatus status);
-	
+
 	Page<OrderDto> searchAllOrderClient(Long id, Pageable pagination);
-	
-	OrderDto findClient(Long id);
 
 }

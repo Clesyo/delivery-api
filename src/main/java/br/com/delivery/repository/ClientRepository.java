@@ -9,4 +9,5 @@ import br.com.delivery.models.Client;
 public interface ClientRepository extends JpaRepository<Client, Long>{
 
 	Optional<Client> findByCpf(String cpf);
+	Optional<Client> findByEmail(String email);
 }

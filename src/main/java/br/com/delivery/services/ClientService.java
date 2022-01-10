@@ -9,7 +9,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.delivery.configuration.security.auth.jwt.JwtService;
 import br.com.delivery.dtos.ClientDto;
+import br.com.delivery.dtos.OrderDto;
 import br.com.delivery.enums.UserType;
 import br.com.delivery.forms.ClientForm;
 import br.com.delivery.interfaces.IClientService;
@@ -17,6 +19,7 @@ import br.com.delivery.models.Client;
 import br.com.delivery.repository.AddressRepository;
 import br.com.delivery.repository.CityRepository;
 import br.com.delivery.repository.ClientRepository;
+import br.com.delivery.repository.OrderRepository;
 import br.com.delivery.repository.RoleRepository;
 import br.com.delivery.repository.UserRepository;
 import br.com.delivery.validator.ClientValidator;
@@ -41,6 +44,12 @@ public class ClientService implements IClientService {
 
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	@Autowired
+	private JwtService jwtService;
+	
+	@Autowired
+	private OrderRepository orderRepository;
 	
 	@Override
 	@Transactional
@@ -72,6 +81,16 @@ public class ClientService implements IClientService {
 		user.setRole(role);
 		userRepository.save(user);
 		client.setUser(user);
+	}
+
+	@Override
+	public OrderDto findOrder(Long id, String token) {
+		String email = jwtService.obtainLoginUser(token);
+		var client = clientRepository.findByEmail(email)
+				.orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado para os dados informado."));
+		var order = orderRepository.findByIdAndClient(id, client)
+				.orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado para os dados informados"));
+		return OrderDto.convert(order);
 	}
 
 

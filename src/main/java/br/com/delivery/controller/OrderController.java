@@ -1,15 +1,16 @@
 package br.com.delivery.controller;
 
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.OK;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
-
-import static org.springframework.http.HttpStatus.*;
-
-import javax.validation.Valid;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,10 +43,10 @@ public class OrderController {
 	public OrderDto changeStatus(@PathVariable Long id, @RequestBody OrderStatus status) {
 		return orderService.changeStatusOrder(id, status);
 	}
-	
+
 	@GetMapping("/client/{id}")
 	@ResponseStatus(OK)
-	public Page<OrderDto> searchAllOrderClient(@PathVariable Long id,@PageableDefault Pageable pagination) {
+	public Page<OrderDto> searchAllOrderClient(@PathVariable Long id, @PageableDefault Pageable pagination) {
 		return orderService.searchAllOrderClient(id, pagination);
 	}
 }

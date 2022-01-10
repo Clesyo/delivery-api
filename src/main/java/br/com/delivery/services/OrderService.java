@@ -33,13 +33,15 @@ public class OrderService implements IOrderService {
 	@Autowired
 	private OrderRepository orderRepository;
 
-	private Double total = 0.00;
+	private Double total;
 
 	@Autowired
 	private ILogOrderService logService;
 
 	@Autowired
 	private ClientRepository clientRepository;
+
+	
 
 	@Override
 	public OrderDto save(OrderForm form) {
@@ -54,6 +56,7 @@ public class OrderService implements IOrderService {
 	}
 
 	private List<OrderItem> buildListItem(OrderForm form, Order order) {
+		total = 0.00;
 		return form.getItems().stream().map(itemForm -> {
 			var item = itemForm.toOrderItem();
 			orderValidator.validateProduct(itemForm, item, order);
@@ -84,13 +87,6 @@ public class OrderService implements IOrderService {
 		return OrderDto.convert(page);
 	}
 
-	@Override
-	public OrderDto findClient(Long id) {
-		// TODO Auto-generated method stub
-		var client = clientRepository.findById(id)
-				.orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado para ID informado."));
-		orderRepository.findByClient(client);
-		return null;
-	}
+	
 
 }
