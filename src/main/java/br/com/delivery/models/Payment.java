@@ -16,26 +16,30 @@ import br.com.delivery.enums.PaymentMethod;
 
 @Entity
 public class Payment {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
-	
+
 	@Enumerated(EnumType.STRING)
 	private PaymentMethod paymento;
-	
+
+
 	@Column(columnDefinition = "decimal(19,2) default '0.00'")
 	private BigDecimal troco;
-	
+
 	@Column(columnDefinition = "decimal(19,2) default '0.00'")
 	private BigDecimal discount;
 
 	@Column(columnDefinition = "decimal(19,2) default '0.00'")
 	private BigDecimal total;
+	
+	@Column(columnDefinition = "decimal(19,2) default '0.00'")
+	private BigDecimal paid;
 
 	public Long getId() {
 		return id;
@@ -84,5 +88,12 @@ public class Payment {
 	public void setTotal(BigDecimal total) {
 		this.total = total;
 	}
-	
+
+	public BigDecimal getPaid() {
+		return paid;
+	}
+
+	public void setPaid(BigDecimal paid) {
+		this.paid = paid;
+	}
 }

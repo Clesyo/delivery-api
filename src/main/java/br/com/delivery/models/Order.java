@@ -11,9 +11,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.delivery.enums.OrderStatus;
+import br.com.delivery.enums.OrderType;
 
 @Entity
 @Table(name = "orders")
@@ -23,6 +25,9 @@ public class Order extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
+	
+	@Enumerated(EnumType.STRING)
+	private OrderType type;
 	
 	@Column(columnDefinition = "decimal(19,2) default '0.00'")
 	private BigDecimal total;
@@ -65,4 +70,14 @@ public class Order extends BaseEntity {
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
+	public OrderType getType() {
+		return type;
+	}
+
+	public void setType(OrderType type) {
+		this.type = type;
+	}
+	
+	
 }
