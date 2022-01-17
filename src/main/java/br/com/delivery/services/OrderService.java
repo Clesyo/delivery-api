@@ -68,6 +68,7 @@ public class OrderService implements IOrderService {
 	@Override
 	public OrderDto changeStatusOrder(Long id, OrderStatus status) {
 		var orderNew = orderRepository.findById(id).map(order -> {
+			orderValidator.validate(order, status);
 			order.setStatus(status);
 			orderRepository.save(order);
 			logService.create(order, OrderOperation.UPDATE, status);
