@@ -25,4 +25,27 @@ public class Menu {
 	@JoinColumn(name = "product_id")
 	private Product product;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public MenuType getType() {
+		return type;
+	}
+
+	public void setType(MenuType type) {
+		this.type = type;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 }
