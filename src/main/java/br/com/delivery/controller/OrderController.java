@@ -49,4 +49,10 @@ public class OrderController {
 	public Page<OrderDto> searchAllOrderClient(@PathVariable Long id, @PageableDefault Pageable pagination) {
 		return orderService.searchAllOrderClient(id, pagination);
 	}
+	
+	@GetMapping("/{id}")
+	@ResponseStatus(OK)
+	public OrderDto findById(@PathVariable Long id) {
+		return orderService.findById(id);
+	}
 }

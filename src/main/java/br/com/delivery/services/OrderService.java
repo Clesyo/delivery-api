@@ -86,6 +86,12 @@ public class OrderService implements IOrderService {
 		return OrderDto.convert(page);
 	}
 
-	
+	@Override
+	public OrderDto findById(Long id) {
+		// TODO Auto-generated method stub
+		var order = orderRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado para ID informado."));
+		return OrderDto.convert(order);
+	}
 
 }
